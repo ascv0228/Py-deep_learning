@@ -1,0 +1,26 @@
+import pandas as pd
+import random
+datas = pd.DataFrame(columns=['class', 'x', 'y', 'a', 'b', 'c', 'd', 'e'])
+
+def get_random_data():
+    return round(random.uniform(-1, 1), 6)
+for i in range(1000):
+    x = get_random_data()
+    y = get_random_data()
+    if (not x):
+        x = get_random_data()
+    if (not y):
+        y = get_random_data()
+    _class = 'A' if x*y>0 else 'B'
+    datas = datas.append({'class': _class,
+                          'x': x,
+                          'y': y,
+                          'a': get_random_data(),
+                          'b': get_random_data(),
+                          'c': get_random_data(),
+                          'd': get_random_data(),
+                          'e': get_random_data()},
+                         ignore_index=True)
+
+
+datas.to_csv('toy_train.csv', index=False)
